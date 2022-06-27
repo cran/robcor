@@ -6,12 +6,10 @@ psdcor <- function(m, method = c("higham", "eigen"), ...) {
   } else {
     ret <- switch(method,
       eigen = {
-        require(sfsmisc)
-        posdefify(m, ...)
+        sfsmisc::posdefify(m, ...)
       },
       higham = {
-        require(sfsmisc)
-        nearcor(m, ...)$cor
+        sfsmisc::nearcor(m, ...)$cor
   #      require(Matrix);
   #      as.matrix(nearPD(m, corr=TRUE, ...)$mat)
       }

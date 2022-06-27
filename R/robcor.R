@@ -30,7 +30,7 @@ robcor <- function(x, y = NULL, method = c("ssd", "quadrant", "mcd"), partial = 
     stop(paste("partial correlations unavailable for", method))
 
   if (method == "mcd") {
-    ret <- covMcd(x, cor = TRUE)$cor
+    ret <- robustbase::covMcd(x, cor = TRUE)$cor
   } else {
     ret <- .PairwiseCorrelation(x, y, method, partial, post, scaler, regress)
   }
@@ -69,9 +69,9 @@ robcor <- function(x, y = NULL, method = c("ssd", "quadrant", "mcd"), partial = 
       x <- .Standardize(x)
 
     if (partial) {
-      if (regress == "lmrob") {
-        require(robustbase)
-      }
+      ## if (regress == "lmrob") {
+      ##   require(robustbase)
+      ## }
       regress <- match.fun(regress)
       r <- .PartialToCorrelation(.BuildPartial(x, .Standardize, .PairCorrelation, regress))
     } else {

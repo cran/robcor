@@ -1,1 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+
+importFrom("stats", "as.formula", "complete.cases", "frequency", "mad",
+           "median", "na.omit", "residuals", "toeplitz")
